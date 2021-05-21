@@ -41,7 +41,22 @@
       },
       back () {
         this.$router.push('/goals')
+      },
+      toggleDiet (diet) {
+        if (this.dietSelected === '') {
+          this.$store.commit('survey/diet', diet)
+        } else if (diet === this.dietSelected) {
+          this.$store.commit('survey/diet', '')
+        }
       }
+    },
+    computed: {
+      dietSelected () {
+        return this.$store.getters['survey/diet']
+      }
+    },
+    created () {
+      this.$store.commit('survey/currentStep', 3)
     }
   }
 </script>
@@ -52,7 +67,15 @@
       <div class="survey-questions__diet align-center">
         <h1>Do you follow a particular diet?</h1>
         <div class="spacer sp__top--sm"></div>
-        <check-button v-for="(diet, key) in diets" :key="key" :text="diet.name"></check-button>
+        <check-button
+          v-for="(diet, key) in diets"
+          :key="key"
+          :text="diet.name"
+          :value="key"
+          :selected="key === dietSelected"
+          @toggle-selected="toggleDiet"
+          :disabled="dietSelected !== '' && dietSelected !== key"
+        ></check-button>
         <div class="grid-x button-container">
           <div class="cell auto">
             <div class="back-button-container">
@@ -60,7 +83,12 @@
             </div>
           </div>
           <div class="cell auto align-right">
-            <thv-button element="button" size="large" @click="submit">Next</thv-button>
+            <thv-button
+              element="button"
+              size="large"
+              :disabled="dietSelected === ''"
+              @click="submit"
+            >Next</thv-button>
           </div>
         </div>
       </div>

@@ -18,6 +18,9 @@
           return 'You must be over 18'
         }
         return this.errors.items.length > 0 ? this.errors.items[0].msg : ''
+      },
+      dob () {
+        return this.$store.getters['survey/dob']
       }
     },
     methods: {
@@ -26,13 +29,28 @@
         this.$validator.reset()
         this.$validator.validate().then(result => {
           if (result && !this.feedback) {
-            this.$router.push('/success')
+            this.$store.dispatch('survey/sendToApi').then(_ => {
+              this.$store.commit('survey/reset')
+              this.$router.push('/success')
+            }).catch(error => {
+              // const error = {
+              //   error: "Name must not be an empty string"
+              // }
+              const defaultError = 'Oh no! an error occured 😞. Please try again later.'
+              this.$store.commit('survey/error', error.error || defaultError)
+            })
           }
         })
       },
       back () {
         this.$router.push('/diet')
+      },
+      input (value) {
+        this.$store.commit('survey/dob', value)
       }
+    },
+    created () {
+      this.$store.commit('survey/currentStep', 4)
     }
   }
 </script>
@@ -45,7 +63,7 @@
         <div class="spacer sp__top--sm"></div>
         <p class="body--large question-description">This helps us recommend the best test for you. We know it's a bit forward but our lips are sealed!</p>
         <div class="spacer sp__top--sm"></div>
-        <dob-input class="align-center survey-input" ref="DobInput" v-validate="'required'" data-vv-value-path="dob" :value="dob" name="dob" :error="errors.has('dob')" minAge="18" :feedback="feedback" @keyup.enter="submit" label=""></dob-input>
+        <dob-input class="align-center survey-input" ref="DobInput" v-validate="'required'" data-vv-value-path="dob" :value="dob" name="dob" :error="errors.has('dob')" minAge="18" :feedback="feedback" @keyup.enter="submit" label="" @input="input"></dob-input>
         <div class="grid-x button-container">
           <div class="cell auto">
             <div class="back-button-container">
@@ -53,7 +71,7 @@
             </div>
           </div>
           <div class="cell auto align-right">
-            <thv-button element="button" size="large" @click="submit">Next</thv-button>
+            <thv-button element="button" size="large" :disabled="disableNext" @click="submit">Submit</thv-button>
           </div>
         </div>
       </div>

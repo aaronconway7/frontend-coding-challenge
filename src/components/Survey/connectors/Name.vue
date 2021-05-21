@@ -8,14 +8,22 @@
       TextInput,
       ThvButton
     },
-    data () {
-      return {
-        name: ''
-      }
-    },
     methods: {
       submit () {
         this.$router.push('/goals')
+      }
+    },
+    created () {
+      this.$store.commit('survey/currentStep', 1)
+    },
+    computed: {
+      name: {
+        get () {
+          return this.$store.getters['survey/name']
+        },
+        set (value) {
+          this.$store.commit('survey/name', value)
+        }
       }
     }
   }

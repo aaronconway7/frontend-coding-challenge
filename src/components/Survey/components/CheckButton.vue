@@ -13,13 +13,22 @@
       selected: {
         type: Boolean,
         default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
+    },
+    methods: {
+      toggleSelected () {
+        this.$emit('toggle-selected', this.value)
       }
     }
   }
 </script>
 
 <template>  
-  <div class="check-button" :class="{ 'check-button--selected': selected }" tabindex="0">
+  <div class="check-button" :class="{ 'check-button--selected': selected, 'check-button--disabled': disabled }" @click="toggleSelected" tabindex="0">
     <p class="check-button__text body--large">{{ text }}</p>
   </div>
 </template>
@@ -68,6 +77,8 @@
     background: #fff;
     box-shadow: none;
     color: #ced0d9;
+    pointer-events: none;
+    opacity: 0.5;
   }
 
   .check-button--disabled:hover {
