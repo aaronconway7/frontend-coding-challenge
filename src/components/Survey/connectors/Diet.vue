@@ -71,10 +71,10 @@
           v-for="(diet, key) in diets"
           :key="key"
           :text="diet.name"
-          :value="key"
-          :selected="key === dietSelected"
+          :value="diet.name"
+          :selected="diet.name === dietSelected"
           @toggle-selected="toggleDiet"
-          :disabled="dietSelected !== '' && dietSelected !== key"
+          :disabled="dietSelected !== '' && dietSelected !== diet.name"
         ></check-button>
         <div class="grid-x button-container">
           <div class="cell auto">

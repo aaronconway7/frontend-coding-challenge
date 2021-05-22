@@ -15,14 +15,11 @@
 </script>
 
 <template>
-  <div class="survey-error-container">
+  <div class="survey-error">
     <error-message :message="error" v-show="error"></error-message>
   </div>  
 </template>
 
 <style lang="css">
-  .survey-error-container {
-    margin: 0 auto 25px auto;
-    max-width: max-content;
-  }
+
 </style>

@@ -1,11 +1,6 @@
 <script>
-  import SurveyError from '@/components/Survey/connectors/SurveyError'
-
   export default {
-    name: 'Survey',
-    components: {
-      SurveyError
-    }
+    name: 'Survey'
   }
 </script>
 
@@ -22,7 +17,6 @@
             </p>
             <p>Good luck!</p>
           </div>
-          <survey-error></survey-error>
         </div>
       </div>
       <transition name="fade" mode="out-in">

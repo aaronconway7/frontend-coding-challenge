@@ -10,7 +10,7 @@ export default {
       diet,
       dob
     }
-    const config = { headers: { } }
+    const config = { headers: { 'Content-Type': 'application/json' } }
     return axios.post(`${API_URL}/users`, body, config)
   }
 }

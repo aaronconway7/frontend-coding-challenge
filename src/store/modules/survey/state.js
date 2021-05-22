@@ -1,4 +1,4 @@
-export const intialState = {
+export const initialState = {
   name: '',
   goals: [],
   diet: '',
@@ -7,6 +7,8 @@ export const intialState = {
   error: ''
 }
 
-const state = () => intialState
+const state = () => ({
+  ...initialState
+})
 
 export default state

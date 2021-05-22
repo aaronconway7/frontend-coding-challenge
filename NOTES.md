@@ -24,3 +24,13 @@
 
 - should I convert commiting mutations to dispatching actions?
 - should I be interacting with vuex state on as user is anwering questions or onc
+
+## Part 2
+
+- Hiding progress bar on success page as it's not in design
+    - hid it depending on route name in this case similar to intro in Survet.vue but could have also done it depending on currentStep
+- Made a success card component
+- Using Foundation XY Grid & BEM methodology
+- reduced # of columns on medium+ screens the content would take up to match design
+- reduced size of p tag but kept same colours
+- defined answers array to easily loop through values, reduce repeated code

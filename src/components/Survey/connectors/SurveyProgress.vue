@@ -20,7 +20,7 @@
 </script>
 
 <template>  
-  <div class="progress-bar-container">
+  <div class="progress-bar-container" v-if="$route.name !== 'success'">
     <progress-bar :currentStep='currentStep' :totalSteps='stages.length'></progress-bar>
   </div>
 </template>

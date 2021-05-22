@@ -1,12 +1,14 @@
 <script>
   import ThvButton from '@/components/Shared/Button'
   import DobInput from '@/components/Shared/DobInput'
+  import SurveyError from '@/components/Survey/connectors/SurveyError'
 
   export default {
     name: 'Dob',
     components: {
       DobInput,
-      ThvButton
+      ThvButton,
+      SurveyError
     },
     computed: {
       disableNext () {
@@ -30,12 +32,13 @@
         this.$validator.validate().then(result => {
           if (result && !this.feedback) {
             this.$store.dispatch('survey/sendToApi').then(_ => {
-              this.$store.commit('survey/reset')
               this.$router.push('/success')
             }).catch(error => {
               // const error = {
               //   error: "Name must not be an empty string"
               // }
+              // Un-comment below to force redirect to /success regardless of API response
+              // this.$router.push('/success')
               const defaultError = 'Oh no! an error occured 😞. Please try again later.'
               this.$store.commit('survey/error', error.error || defaultError)
             })
@@ -50,6 +53,7 @@
       }
     },
     created () {
+      this.$store.commit('survey/error', '')
       this.$store.commit('survey/currentStep', 4)
     }
   }
@@ -59,6 +63,8 @@
   <div class="grid-x grid-x-margin">
     <div class="cell small-12 medium-6 medium-offset-3">
       <div class="survey-questions__dob align-center">
+        <survey-error></survey-error>
+        <div class="spacer sp__top--xs"></div>
         <h1>How old are you?</h1>
         <div class="spacer sp__top--sm"></div>
         <p class="body--large question-description">This helps us recommend the best test for you. We know it's a bit forward but our lips are sealed!</p>

@@ -73,10 +73,10 @@
           v-for="(goal, key) in goals"
           :key="key"
           :text="goal.name"
-          :value="key"
-          :selected="goalsSelected.includes(key)"
+          :value="goal.name"
+          :selected="goalsSelected.includes(goal.name)"
           @toggle-selected="toggleGoal"
-          :disabled="goalsSelected.length === MAX_GOALS_ALLOWED && !goalsSelected.includes(key)"
+          :disabled="goalsSelected.length === MAX_GOALS_ALLOWED && !goalsSelected.includes(goal.name)"
         ></check-button>
         <div class="grid-x button-container">
           <div class="cell auto">
