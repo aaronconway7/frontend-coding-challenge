@@ -29,4 +29,4 @@
 
 ***
 
-👋 - Really cool task! Definately one of the more interesting coding tasks I've been given. I've bee wanting to try Vue for a while and this gave but this was my first proper go at it and enjoyed the experience! Thanks! Aaron.
+👋 - Really cool task! Definately one of the more interesting coding tasks I've been given. I've bee wanting to try Vue for a while and this gave but this was my first proper go at it and enjoyed the experience! Hope you like what I've put together - thanks! Aaron.
