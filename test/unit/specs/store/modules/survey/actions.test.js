@@ -1,6 +1,6 @@
 import actions, { API_URL } from '@/store/modules/survey/actions'
 import axios from 'axios'
-import router from '@/router'
+// import router from '@/router'
 
 let url = ''
 let body = {}
