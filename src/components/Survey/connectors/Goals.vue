@@ -10,6 +10,7 @@
     },
     data () {
       return {
+        maxGoalsAllowed: 4,
         goals: {
           improveEnergy: {
             name: 'Energy'
@@ -56,7 +57,6 @@
       }
     },
     created () {
-      this.MAX_GOALS_ALLOWED = 4
       this.$store.commit('survey/currentStep', 2)
     }
   }
@@ -67,7 +67,7 @@
     <div class="cell small-12 medium-6 medium-offset-3">
       <div class="survey-questions__goals align-center">
         <h1>Nice to meet you {{ name }}. What would you like to focus on?</h1>
-        <p class="body--large question-description">Choose up to {{ MAX_GOALS_ALLOWED }}</p>
+        <p class="body--large question-description">Choose up to {{ maxGoalsAllowed }}</p>
         <div class="spacer sp__top--sm"></div>
         <check-button
           v-for="(goal, key) in goals"
@@ -76,7 +76,7 @@
           :value="goal.name"
           :selected="goalsSelected.includes(goal.name)"
           @toggle-selected="toggleGoal"
-          :disabled="goalsSelected.length === MAX_GOALS_ALLOWED && !goalsSelected.includes(goal.name)"
+          :disabled="goalsSelected.length === maxGoalsAllowed && !goalsSelected.includes(goal.name)"
         ></check-button>
         <div class="grid-x button-container">
           <div class="cell auto">

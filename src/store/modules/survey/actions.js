@@ -22,7 +22,6 @@ export default {
         router.push('/success')
       }
     }).catch(error => {
-      router.push('/success')
       const errorMessage = error.response.data.error
       commit('error', errorMessage)
     })
