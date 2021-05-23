@@ -34,3 +34,11 @@
 - reduced # of columns on medium+ screens the content would take up to match design
 - reduced size of p tag but kept same colours
 - defined answers array to easily loop through values, reduce repeated code
+- used .toLocaleDateString() to format date in this instance for ease but could have used moment library like blog says you use
+
+## Part 3
+
+- defining checkButton as we re-use it a few times
+- replicating existing class tests for the disabled prop
+- isolation
+- https://lmiller1990.github.io/vue-testing-handbook/v3/vuex-actions.html#testing-actions

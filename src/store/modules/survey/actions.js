@@ -1,16 +1,30 @@
 import axios from 'axios'
-const API_URL = 'http://localhost:3000'
+
+import router from '@/router'
+
+export const API_URL = 'http://localhost:3000'
 
 export default {
-  async sendToApi (context) {
-    const { name, goals, diet, dob } = context.state
+  async sendToApi ({ commit, state }) {
+    const { name, goals, diet, dob } = state
     const body = {
-      Name: name,
-      goals,
-      diet,
-      dob
+      user: {
+        Name: name,
+        goals,
+        diet,
+        dob
+      }
     }
     const config = { headers: { 'Content-Type': 'application/json' } }
-    return axios.post(`${API_URL}/users`, body, config)
+
+    return axios.post(`${API_URL}/users`, body, config).then(() => {
+      if (router.history.current.path !== '/success') {
+        router.push('/success')
+      }
+    }).catch(error => {
+      router.push('/success')
+      const errorMessage = error.response.data.error
+      commit('error', errorMessage)
+    })
   }
 }

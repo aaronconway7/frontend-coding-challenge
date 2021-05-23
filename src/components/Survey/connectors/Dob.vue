@@ -31,17 +31,7 @@
         this.$validator.reset()
         this.$validator.validate().then(result => {
           if (result && !this.feedback) {
-            this.$store.dispatch('survey/sendToApi').then(_ => {
-              this.$router.push('/success')
-            }).catch(error => {
-              // const error = {
-              //   error: "Name must not be an empty string"
-              // }
-              // Un-comment below to force redirect to /success regardless of API response
-              // this.$router.push('/success')
-              const defaultError = 'Oh no! an error occured 😞. Please try again later.'
-              this.$store.commit('survey/error', error.error || defaultError)
-            })
+            this.$store.dispatch('survey/sendToApi')
           }
         })
       },
