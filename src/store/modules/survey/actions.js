@@ -9,7 +9,7 @@ export default {
     const { name, goals, diet, dob } = state
     const body = {
       user: {
-        Name: name,
+        name,
         goals,
         diet,
         dob
